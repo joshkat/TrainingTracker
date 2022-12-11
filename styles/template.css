@@ -1,0 +1,77 @@
+.template-topHead{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    position: relative;
+}
+
+.template-topHead h1{
+    margin-left: 10px;
+}
+
+.template-topHead button{
+    margin-right: 10px;
+}
+
+.template-border{
+    border: solid 1px;
+    border-radius: 10px;
+    color: grey;
+    width: 45%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 160px;
+}
+
+.template-title{
+    font-size: large;
+    font-weight: bolder;
+    color: black;
+}
+
+.template-button{
+    background-color: rgb(234, 246, 255);
+    color: rgb(59, 169, 252);
+}
+
+.template-menu{
+    display: none;
+}
+
+.opened{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 38%;
+    top: 65%;
+    background-color: rgb(38,49,53);
+    color: white;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+}
+
+li{
+    margin-left: 5px;
+}
+
+.template-workOutList{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: smaller;
+    color: grey;
+    padding: 0 5px 0 5px;
+    height: 100%;
+}
+
+.template-lastWorkout{
+    color: grey;
+    font-size: small;
+    padding: 0 5px 10px 5px;
+}
