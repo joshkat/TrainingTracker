@@ -10,8 +10,6 @@ html, body {
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 
 button{
@@ -58,7 +56,13 @@ header{
     flex-wrap: wrap;
     justify-content: space-between;
     width: 350px;
+    max-height: 60vh;
+    overflow: scroll;
 }
+
+::-webkit-scrollbar { 
+display: none;  /*Chrome, Opera and Safari no scrollbar*/
+  }
 
 *{  /* disable text selection*/
     -webkit-touch-callout: none; /* iOS Safari */
@@ -67,7 +71,9 @@ header{
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-    font-family: Arial, Helvetica, sans-serif;
     
+    font-family: Arial, Helvetica, sans-serif;
+    -ms-overflow-style: none;  /* IE and Edge no scrollbar*/
+    scrollbar-width: none;  /* Firefox no scrollbar*/
     /* background-color: #181a1b; color i want for dark mode*/
 }
