@@ -1,0 +1,23 @@
+.footer-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(38,49,53);
+    height: 10vh;
+    min-width: 300px;
+    max-width: 810px;
+    width: 100%;
+}
+
+.footer-controls{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+}
+
+.footer-controls button{
+    width: 15%;
+    text-align: center;
+}
+
