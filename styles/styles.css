@@ -12,11 +12,6 @@ html, body {
     height: 100%;
 }
 
-button{
-    border: 0;
-    border-radius: 5px;
-}
-
 header{
     display: flex;
     flex-direction: column;
@@ -56,8 +51,13 @@ header{
     flex-wrap: wrap;
     justify-content: space-between;
     width: 350px;
-    max-height: 60vh;
+    max-height: 58vh;
     overflow: scroll;
+}
+
+button{
+    border: 0;
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar { 
@@ -71,7 +71,7 @@ display: none;  /*Chrome, Opera and Safari no scrollbar*/
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-    
+
     font-family: Arial, Helvetica, sans-serif;
     -ms-overflow-style: none;  /* IE and Edge no scrollbar*/
     scrollbar-width: none;  /* Firefox no scrollbar*/

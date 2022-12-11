@@ -28,5 +28,3 @@ if(hour < 12 && hour >= 0){
 }else{
     welcomeTag.innerText = 'Good Evening!' 
 }
-
-console.log(hour)

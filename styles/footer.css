@@ -6,7 +6,7 @@
     background-color: rgb(38,49,53);
     height: 10vh;
     min-width: 300px;
-    max-width: 810px;
+    max-width: 450px;
     width: 100%;
 }
 
@@ -16,8 +16,18 @@
     justify-content: space-around;
 }
 
-.footer-controls button{
+.footer-controls a{
+    display: flex;
+    text-decoration: none;
     width: 15%;
-    text-align: center;
+}
+
+.footer-controls button{
+    background-color: transparent;
+    color: white;
+}
+
+.footer-controls span{
+    font-size: x-large;
 }
 
