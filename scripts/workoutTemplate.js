@@ -1,50 +1,55 @@
-function Template(name, description, workouts, lastWorkout){
-    this.name = name //needed to create
-    this.description = description  //could be empty str to init
-    this.workouts = workouts    //empty arr to init
-    this.lastWorkout = lastWorkout //empty str to init
+function Template(name, description, workouts, lastWorkout) {
+  this.name = name; //needed to create
+  this.description = description; //could be empty str to init
+  this.workouts = workouts; //empty arr to init
+  this.lastWorkout = lastWorkout; //empty str to init
 }
 
-Template.prototype.addWorkoutToTemplate = function([name, notes, setInfo]){
-    this.workouts.push([name, notes, setInfo])
-}
+Template.prototype.addWorkoutToTemplate = function ([name, notes, setInfo]) {
+  this.workouts.push([name, notes, setInfo]);
+};
 
 const premadeWorkouts = [
-    //order of each arr is name, notes, setInfo(left empty)
-    ['Bench Press', 'rn', 're'],
-    ['Incline Press', 're', 're']
-]
+  //order of each arr is name, notes, setInfo(left empty)
+  ["Bench Press", "rn", "re"],
+  ["Incline Press", "re", "re"],
+];
 
-let chestWorkout = new Template('Chest', '>.<', [])
-let backWorkout = new Template('Back', '', premadeWorkouts)
+let chestWorkout = new Template("Chest", ">.<", []);
+let backWorkout = new Template("Back", "", premadeWorkouts);
 
-chestWorkout.addWorkoutToTemplate(premadeWorkouts[0])
-console.log(chestWorkout, backWorkout)
+chestWorkout.addWorkoutToTemplate(premadeWorkouts[0]);
+console.log(chestWorkout, backWorkout);
 
-function htmlTemplate(objTemplate, /*userTemplateList,*/ HTMLRef){ //
-    var templateBorder = document.createElement('div'),
-        templateTopHead = document.createElement('div'),
-        templateTitle = document.createElement('h1'), //set innerText later
-        templateButton = document.createElement('button'), //innerTxt later
-        templateMenu = document.createElement('ol'),
-        templateWorkoutList = document.createElement('div'),
-        templateLastWorkout = document.createElement('div');
+function htmlTemplate(objTemplate, /*userTemplateList,*/ HTMLRef) {
+  //
+  var templateBorder = document.createElement("div"),
+    templateTopHead = document.createElement("div"),
+    templateTitle = document.createElement("h1"), //set innerText later
+    templateButton = document.createElement("button"), //innerTxt later
+    templateMenu = document.createElement("ol"),
+    templateWorkoutList = document.createElement("div"),
+    templateLastWorkout = document.createElement("div");
 
-    templateBorder.classList.add('template-border')    
-    templateTopHead.classList.add('template-topHead')
-    templateTitle.classList.add('template-title')
-    templateButton.classList.add('template-button')
-    templateMenu.classList.add('template-menu')
-    templateWorkoutList.classList.add('template-workOutList')
-    templateLastWorkout.classList.add('template-lastWorkout')
+  templateBorder.classList.add("template-border");
+  templateTopHead.classList.add("template-topHead");
+  templateTitle.classList.add("template-title");
+  templateButton.classList.add("template-button");
+  templateMenu.classList.add("template-menu");
+  templateWorkoutList.classList.add("template-workOutList");
+  templateLastWorkout.classList.add("template-lastWorkout");
 
-    templateBorder.append(templateTopHead,templateWorkoutList, templateLastWorkout)//, templateWorkoutList, templateLastWorkout)
-    templateTopHead.append(templateTitle, templateButton, templateMenu)
-    templateTitle.innerText = objTemplate.name
-    templateButton.innerText = '•••'
-    templateWorkoutList.innerText = objTemplate.workouts
-    templateLastWorkout.innerText = objTemplate.lastWorkout
+  templateBorder.append(
+    templateTopHead,
+    templateWorkoutList,
+    templateLastWorkout
+  ); //, templateWorkoutList, templateLastWorkout)
+  templateTopHead.append(templateTitle, templateButton, templateMenu);
+  templateTitle.innerText = objTemplate.name;
+  templateButton.innerText = "•••";
+  templateWorkoutList.innerText = objTemplate.workouts;
+  templateLastWorkout.innerText = objTemplate.lastWorkout;
 
-    HTMLRef.append(templateBorder)
-    console.log('template added')
+  HTMLRef.append(templateBorder);
+  console.log("template added");
 }
