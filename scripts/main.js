@@ -1,6 +1,6 @@
 let div = document.getElementsByClassName("mainContent");
 let templateHolder = document.getElementsByClassName("holder");
-let buttons = document.getElementsByTagName("button");
+let addTemplate = document.getElementById("addTemplate");
 let templates = []; //by default will be null, put my own in later
 let HTMLtemplates = [];
 /**
@@ -32,7 +32,7 @@ let chest = new Template(
 );
 
 //appending dummy template
-buttons[1].addEventListener("click", () => {
+addTemplate.addEventListener("click", () => {
   templates.push(chest); //add to obj arr
   htmlTemplate(chest, templateHolder[0]); //create HTML
   HTMLtemplates = document.getElementsByClassName("template-border"); //reset HTML arr
