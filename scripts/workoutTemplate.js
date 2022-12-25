@@ -1,10 +1,3 @@
-function Templte(name, description, workouts, lastWorkout) {
-  this.name = name; //needed to create
-  this.description = description; //could be empty str to init
-  this.workouts = workouts; //empty arr to init
-  this.lastWorkout = lastWorkout; //empty str to init
-}
-
 class Template {
   constructor(name, description, workouts, lastWorkout) {
     this.name = name; //needed to create
@@ -18,10 +11,6 @@ class Template {
     this.workouts.push(arr);
   }
 }
-
-Templte.prototype.addWorkoutToTemplate = function ([name, notes, setInfo]) {
-  this.workouts.push([name, notes, setInfo]);
-};
 
 const premadeWorkouts = [
   //order of each arr is name, notes, setInfo(left empty)

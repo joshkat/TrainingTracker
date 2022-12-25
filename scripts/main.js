@@ -3,25 +3,6 @@ let templateHolder = document.getElementsByClassName("holder");
 let addTemplate = document.getElementById("addTemplate");
 let templates = []; //by default will be null, put my own in later
 let HTMLtemplates = [];
-/**
- * Current plan is as follows
- * 1. Append things to holder
- * 2. Have everything appended, have an obj type created of it and link them together within the arr
- * 2.5. To rearrange order of arr just have everything change and reload entire arr back into existence
- * 3. Make each html elem clickable and append current OBJ !HTML content (although they'll be identical)
- */
-
-// var openMenuBtn = document.getElementsByClassName("template-button")[0], This is to open options button on templates, reuse later
-//   menu = document.getElementsByClassName("template-menu")[0];
-
-// openMenuBtn.addEventListener(
-//   "click",
-//   function (e) {
-//     e.preventDefault();
-//     menu.classList.toggle("opened");
-//   },
-//   false
-// );
 
 //dummy template to append
 let chest = new Template(
