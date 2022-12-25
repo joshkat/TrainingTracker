@@ -39,3 +39,20 @@ if (hour < 12 && hour >= 0) {
 } else {
   welcomeTag.innerText = "Good Evening!";
 }
+
+//theme change
+const themeButton = document.getElementById("themeChange");
+const cssTag = document.getElementById("darkModeCSS");
+
+themeButton.addEventListener("click", () => {
+  switch (themeButton.innerText) {
+    case "☀️":
+      themeButton.innerText = "🌚";
+      cssTag.href = "./styles/darkModeStyles.css";
+      break;
+    case "🌚":
+      themeButton.innerText = "☀️";
+      cssTag.href = "";
+      break;
+  }
+});

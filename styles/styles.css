@@ -22,6 +22,16 @@ header {
   width: 100%;
 }
 
+#welcomeWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#themeChange {
+  background-color: none;
+}
+
 .centerItem {
   display: flex;
   justify-content: center;

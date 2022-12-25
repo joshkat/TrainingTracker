@@ -16,6 +16,11 @@
     <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
     <link rel="stylesheet" href="./styles/styles.css" />
     <link rel="stylesheet" href="./styles/template.css" />
+    <link
+      id="darkModeCSS"
+      rel="stylesheet"
+      href="./styles/darkModeStyles.css"
+    />
     <link rel="stylesheet" href="./styles/footer.css" />
     <link rel="icon" href="/icon.png" />
   </head>
@@ -23,7 +28,10 @@
     <div id="root">
       <div class="mainContent">
         <header>
-          <h1 id="welcome">Welcome!</h1>
+          <div id="welcomeWrapper">
+            <h1 id="welcome">Welcome!</h1>
+            <button id="themeChange" style="font-size: x-large">🌚</button>
+          </div>
           <!--changes based on time-->
           <h4>Quick Start</h4>
           <div class="centerItem">
