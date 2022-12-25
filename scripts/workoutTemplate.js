@@ -1,11 +1,25 @@
-function Template(name, description, workouts, lastWorkout) {
+function Templte(name, description, workouts, lastWorkout) {
   this.name = name; //needed to create
   this.description = description; //could be empty str to init
   this.workouts = workouts; //empty arr to init
   this.lastWorkout = lastWorkout; //empty str to init
 }
 
-Template.prototype.addWorkoutToTemplate = function ([name, notes, setInfo]) {
+class Template {
+  constructor(name, description, workouts, lastWorkout) {
+    this.name = name; //needed to create
+    this.description = description; //could be empty str to init
+    this.workouts = workouts; //empty arr to init
+    this.lastWorkout = lastWorkout; //empty str to init
+  }
+
+  addWorkoutToTemplate(arr) {
+    //arr consists of [name, notes, setInfo]
+    this.workouts.push(arr);
+  }
+}
+
+Templte.prototype.addWorkoutToTemplate = function ([name, notes, setInfo]) {
   this.workouts.push([name, notes, setInfo]);
 };
 
