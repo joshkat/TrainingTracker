@@ -33,7 +33,6 @@ let chestWorkout = new Template("Chest", ">.<", []);
 let backWorkout = new Template("Back", "", premadeWorkouts);
 
 chestWorkout.addWorkoutToTemplate(premadeWorkouts[0]);
-console.log(chestWorkout, backWorkout);
 
 function htmlTemplate(objTemplate, /*userTemplateList,*/ HTMLRef) {
   //
@@ -57,7 +56,7 @@ function htmlTemplate(objTemplate, /*userTemplateList,*/ HTMLRef) {
     templateTopHead,
     templateWorkoutList,
     templateLastWorkout
-  ); //, templateWorkoutList, templateLastWorkout)
+  );
   templateTopHead.append(templateTitle, templateButton, templateMenu);
   templateTitle.innerText = objTemplate.name;
   templateButton.innerText = "•••";
@@ -65,5 +64,4 @@ function htmlTemplate(objTemplate, /*userTemplateList,*/ HTMLRef) {
   templateLastWorkout.innerText = objTemplate.lastWorkout;
 
   HTMLRef.append(templateBorder);
-  console.log("template added");
 }

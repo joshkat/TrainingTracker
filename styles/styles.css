@@ -1,79 +1,82 @@
-html, body {
-    margin:0;
-    padding:0;
-    height: 100%;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  /* background-color: #181a1b; color for dark mode */
 }
 
-#root{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100%;
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
 }
 
-header{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    width: 100%;
+header {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
 }
 
-.centerItem{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.centerItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#emptyWorkout{
-    background-color: rgb(59,169,252);
-    height: 30px;
-    width: 100%;
+#emptyWorkout {
+  background-color: rgb(59, 169, 252);
+  height: 30px;
+  width: 100%;
 }
 
-.templateTitle{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+.templateTitle {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.mainContent{
-    height: 100%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.mainContent {
+  height: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.holder{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 350px;
-    max-height: 58vh;
-    overflow: scroll;
+.holder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 350px;
+  max-height: 58vh;
+  overflow: scroll;
 }
 
-button{
-    border: 0;
-    border-radius: 5px;
+button {
+  border: 0;
+  border-radius: 5px;
 }
 
-::-webkit-scrollbar { 
-display: none;  /*Chrome, Opera and Safari no scrollbar*/
-  }
+::-webkit-scrollbar {
+  display: none; /*Chrome, Opera and Safari no scrollbar*/
+}
 
-*{  /* disable text selection*/
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+* {
+  /* disable text selection*/
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 
-    font-family: Arial, Helvetica, sans-serif;
-    -ms-overflow-style: none;  /* IE and Edge no scrollbar*/
-    scrollbar-width: none;  /* Firefox no scrollbar*/
-    /* background-color: #181a1b; color i want for dark mode*/
+  font-family: Arial, Helvetica, sans-serif;
+  -ms-overflow-style: none; /* IE and Edge no scrollbar*/
+  scrollbar-width: none; /* Firefox no scrollbar*/
+  /* background-color: #181a1b; color i want for dark mode*/
 }
