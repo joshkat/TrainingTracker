@@ -23,7 +23,7 @@ let backWorkout = new Template("Back", "", premadeWorkouts);
 
 chestWorkout.addWorkoutToTemplate(premadeWorkouts[0]);
 
-function htmlTemplate(objTemplate, /*userTemplateList,*/ HTMLRef) {
+function htmlTemplate(objTemplate /*userTemplateList,*/) {
   //
   var templateBorder = document.createElement("div"),
     templateTopHead = document.createElement("div"),
@@ -52,5 +52,5 @@ function htmlTemplate(objTemplate, /*userTemplateList,*/ HTMLRef) {
   templateWorkoutList.innerText = objTemplate.workouts;
   templateLastWorkout.innerText = objTemplate.lastWorkout;
 
-  HTMLRef.append(templateBorder);
+  return templateBorder;
 }

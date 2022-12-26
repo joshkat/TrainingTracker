@@ -1,6 +1,6 @@
 let div = document.getElementsByClassName("mainContent");
 let templateHolder = document.getElementsByClassName("holder");
-let addTemplate = document.getElementById("addTemplate");
+let addTemplateBtn = document.getElementById("addTemplate");
 let templates = []; //by default will be null, put my own in later
 let HTMLtemplates = [];
 
@@ -13,19 +13,21 @@ let chest = new Template(
 );
 
 //appending dummy template
-addTemplate.addEventListener("click", () => {
-  templates.push(chest); //add to obj arr
-  htmlTemplate(chest, templateHolder[0]); //create HTML
-  HTMLtemplates = document.getElementsByClassName("template-border"); //reset HTML arr
-  console.log(templates, HTMLtemplates); //log info
+const addTemplate = () => {
+  const newDiv = htmlTemplate(chest); //generates div to append
+  HTMLtemplates.push(newDiv); //pushes div to HTMLref arr
+  templates.push(chest); //would push real template
 
-  //for loop to show clicked on template
-  for (var i = 0; i < templates.length; i++) {
-    HTMLtemplates[i].addEventListener("click", () => {
-      console.log(templates[i - 1]);
-    });
-  }
-});
+  //logs current arr pos that template is in
+  newDiv.addEventListener("click", (event) => {
+    console.log(HTMLtemplates.indexOf(event.currentTarget));
+  });
+
+  //appends div to document
+  templateHolder[0].appendChild(newDiv);
+};
+
+addTemplateBtn.addEventListener("click", addTemplate);
 
 //set greeting @ header
 const d = new Date();
