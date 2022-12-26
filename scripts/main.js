@@ -50,11 +50,11 @@ themeButton.addEventListener("click", () => {
   switch (themeButton.innerText) {
     case "☀️":
       themeButton.innerText = "🌚";
-      cssTag.href = "./styles/darkModeStyles.css";
+      cssTag.href = "";
       break;
     case "🌚":
       themeButton.innerText = "☀️";
-      cssTag.href = "";
+      cssTag.href = "./styles/darkModeStyles.css";
       break;
   }
 });
