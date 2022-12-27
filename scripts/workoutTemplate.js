@@ -21,36 +21,21 @@ const premadeWorkouts = [
 let chestWorkout = new Template("Chest", ">.<", []);
 let backWorkout = new Template("Back", "", premadeWorkouts);
 
-chestWorkout.addWorkoutToTemplate(premadeWorkouts[0]);
-
-function htmlTemplate(objTemplate /*userTemplateList,*/) {
-  //
-  var templateBorder = document.createElement("div"),
-    templateTopHead = document.createElement("div"),
-    templateTitle = document.createElement("h1"), //set innerText later
-    templateButton = document.createElement("button"), //innerTxt later
-    templateMenu = document.createElement("ol"),
-    templateWorkoutList = document.createElement("div"),
-    templateLastWorkout = document.createElement("div");
-
+function htmlTemplate(objTemplate) {
+  let templateBorder = document.createElement("div");
+  templateBorder.innerHTML = `
+  <div class="template-topHead">
+    <h1 class="template-title"> ${objTemplate.name} </h1>
+    <button class="template-button">•••</button>
+  <ol class="template-menu">
+    <li>✍🏼 Edit</li>
+    <li>🖊 Rename</li>
+    <li>❌ Delete</li>
+  </ol>
+  </div>
+  <div class="template-workOutList"> ${objTemplate.workouts} </div>
+  <div class="template-lastWorkout"> ${objTemplate.lastWorkout} </div>
+  `;
   templateBorder.classList.add("template-border");
-  templateTopHead.classList.add("template-topHead");
-  templateTitle.classList.add("template-title");
-  templateButton.classList.add("template-button");
-  templateMenu.classList.add("template-menu");
-  templateWorkoutList.classList.add("template-workOutList");
-  templateLastWorkout.classList.add("template-lastWorkout");
-
-  templateBorder.append(
-    templateTopHead,
-    templateWorkoutList,
-    templateLastWorkout
-  );
-  templateTopHead.append(templateTitle, templateButton, templateMenu);
-  templateTitle.innerText = objTemplate.name;
-  templateButton.innerText = "•••";
-  templateWorkoutList.innerText = objTemplate.workouts;
-  templateLastWorkout.innerText = objTemplate.lastWorkout;
-
   return templateBorder;
 }
