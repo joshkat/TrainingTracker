@@ -1,9 +1,9 @@
 //theme change
 const themeButton = document.getElementById("themeChange");
 const cssTag = document.getElementById("darkModeCSS");
+//default theme is dark
 
-console.log(localStorage.getItem("currentTheme"), themeButton.innerText.length);
-
+//for index
 if (
   localStorage.getItem("currentTheme") == "light" &&
   themeButton.innerText.length == 2
@@ -12,6 +12,7 @@ if (
   themeButton.innerText = "🌚";
 }
 
+//for redirects
 if (
   localStorage.getItem("currentTheme") == "light" &&
   themeButton.innerText.length == 3

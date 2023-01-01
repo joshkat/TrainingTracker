@@ -1,0 +1,23 @@
+.workout-wrapper {
+  display: flex;
+  height: 50px;
+  border: solid 0.5px #b7b7b6;
+}
+
+.workout-info {
+  display: flex;
+  flex-direction: column;
+  border-left: solid 1px #b7b7b6;
+}
+
+#equipment {
+  padding-bottom: 20px;
+}
+
+.workout-info h5 {
+  margin: 0;
+}
+
+.workout-info {
+  font-size: 15px;
+}

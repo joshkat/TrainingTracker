@@ -1,14 +1,3 @@
-class Excercise {
-  constructor(name, bodyPart, equitment, instructions, imgURL) {
-    //all of these are required!
-    this.name = name;
-    this.bodyPart = bodyPart;
-    this.equitment = equitment;
-    this.instructions = instructions;
-    this.imgURL = imgURL;
-  }
-}
-
 /**
  * Template for obj literals being parsed have the following look:
  * obj {
@@ -23,18 +12,31 @@ class Excercise {
  * HTML which has event listeners etc
  */
 
-let temp2 = {
-  name: "Palms-down wrist curl over bench",
-  bodyPart: "Forearms",
-  equitment: "Barbell",
-  grabInstructions: [
-    "Start out by placing a barbell on one side of a flat bench.",
-    "Kneel down on both of your knees so that your body is facing the flat bench.",
-    "Use your arms to grab the barbell with a pronated grip (palms down) and bring them up so that your forearms are resting against the flat bench. Your wrists should be hanging over the edge.",
-    "Start out by curling your wrist upwards and exhaling.",
-    "Slowly lower your wrists back down to the starting position while inhaling.",
-    "Your forearms should be stationary as your wrist is the only movement needed to perform this exercise.",
-    "Repeat for the recommended amount of repetitions.",
-  ],
-};
-console.log(typeof temp);
+const container = document.querySelector(".workoutHolder");
+
+const filePath = "../scraped.txt";
+// send a request for the text file to the server
+fetch(filePath)
+  .then((response) => {
+    // return the response as a text string
+    return response.text();
+  })
+  .then((fileContents) => {
+    // split the file contents into an array of lines
+    const lines = fileContents.split("\n");
+
+    // log each line to the console
+    lines.forEach((line) => {
+      let template = htmlTemplate(JSON.parse(line));
+      template.addEventListener("click", () => {
+        let temp = JSON.parse(line);
+        alert(temp.name);
+      });
+      container.append(template);
+    });
+    console.log("done");
+  })
+  .catch((error) => {
+    // handle any errors
+    console.error(error);
+  });

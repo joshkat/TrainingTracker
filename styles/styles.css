@@ -74,6 +74,7 @@ header {
   max-height: 75vh;
   margin-top: 10px;
   overflow: scroll;
+  flex-direction: column;
 }
 
 button {
