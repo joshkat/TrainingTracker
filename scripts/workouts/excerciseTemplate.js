@@ -1,17 +1,3 @@
-/**
- * Template for obj literals being parsed have the following look:
- * obj {
- *  name: str,
- *  bodyPart: str,
- *  equitment: str,
- *  instructions: strArr[],
- *  imgURL: str
- * }
- *
- * Current plan is to parse each str of txt file up to certain point, and use the obj literals to create
- * HTML which has event listeners etc
- */
-
 const container = document.querySelector(".workoutHolder");
 
 const filePath = "../scraped.txt";
@@ -24,8 +10,6 @@ fetch(filePath)
   .then((fileContents) => {
     // split the file contents into an array of lines
     const lines = fileContents.split("\n");
-
-    // log each line to the console
     lines.forEach((line) => {
       let template = htmlTemplate(JSON.parse(line));
       template.addEventListener("click", () => {
@@ -34,7 +18,6 @@ fetch(filePath)
       });
       container.append(template);
     });
-    console.log("done");
   })
   .catch((error) => {
     // handle any errors
