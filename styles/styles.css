@@ -67,6 +67,15 @@ header {
   overflow: scroll;
 }
 
+.workoutHolder {
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+  max-height: 75vh;
+  margin-top: 10px;
+  overflow: scroll;
+}
+
 button {
   border: 0;
   border-radius: 5px;
