@@ -100,7 +100,7 @@ const renameTemplate = (div) => {
     newName = newName.slice(0, 10); //cut off after 10 length
     div
       .getElementsByClassName("template-topHead")[0]
-      .getElementsByTagName("h1")[0].innerHTML = newName;
+      .getElementsByTagName("h1")[0].innerText = newName;
     templates[index].name = newName;
   }
   console.log(index);
