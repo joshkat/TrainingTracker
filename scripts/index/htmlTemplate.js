@@ -27,7 +27,6 @@ const addTemplate = () => {
   HTMLtemplates.push(newDiv); //pushes div to HTMLref arr
   HTMLbuttons.push(optionsBtn); //pushes btn to HTMLref arr
   templates.push(chest); //would push real template
-  let index = templates.length - 1;
   let menuOpen = false;
 
   //logs current arr pos that template is in
@@ -45,6 +44,8 @@ const addTemplate = () => {
   //Rename button
   templateAdjustBtns[1].addEventListener("click", () => {
     renameTemplate(newDiv);
+    menu.classList.toggle("opened");
+    menuOpen = false;
   });
 
   //deleteButton
