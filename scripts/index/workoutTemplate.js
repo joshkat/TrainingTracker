@@ -1,8 +1,11 @@
 class Template {
+  workouts = ["This template is currently empty :("]; //text to be shown to user
   constructor(name, description, workouts, lastWorkout) {
     this.name = name; //needed to create
     this.description = description; //could be empty str to init
-    this.workouts = workouts; //empty arr to init
+    if (workouts.length != 0) {
+      this.workouts = workouts; //empty arr to init
+    }
     this.lastWorkout = lastWorkout; //empty str to init
   }
 

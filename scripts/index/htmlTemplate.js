@@ -13,9 +13,16 @@ let chest = new Template(
   []
 );
 
+function createTemplate() {
+  const name = prompt("Template Name:");
+  let rtrn = new Template(name, "", [], []);
+  return rtrn;
+}
+
 //appending dummy template
 const addTemplate = () => {
-  const newDiv = htmlTemplate(chest); //generates div to append
+  const newTemplate = createTemplate();
+  const newDiv = htmlTemplate(newTemplate); //generates div to append
   const optionsBtn = newDiv.getElementsByClassName("template-button")[0];
   const menu = newDiv
     .getElementsByClassName("template-topHead")[0]
@@ -26,7 +33,7 @@ const addTemplate = () => {
     .getElementsByTagName("li"); //gets the list of btns in menu
   HTMLtemplates.push(newDiv); //pushes div to HTMLref arr
   HTMLbuttons.push(optionsBtn); //pushes btn to HTMLref arr
-  templates.push(chest); //would push real template
+  templates.push(newTemplate); //would push real template
   let menuOpen = false;
 
   //logs current arr pos that template is in
