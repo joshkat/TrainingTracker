@@ -2,24 +2,46 @@
 const themeButton = document.getElementById("themeChange");
 const cssTag = document.getElementById("darkModeCSS");
 
+console.log(localStorage.getItem("currentTheme"), themeButton.innerText.length);
+
+if (
+  localStorage.getItem("currentTheme") == "light" &&
+  themeButton.innerText.length == 2
+) {
+  cssTag.href = "";
+  themeButton.innerText = "🌚";
+}
+
+if (
+  localStorage.getItem("currentTheme") == "light" &&
+  themeButton.innerText.length == 3
+) {
+  cssTag.href = "";
+  themeButton.innerText = "🌚​";
+}
+
 themeButton.addEventListener("click", () => {
   switch (themeButton.innerText) {
-    case "☀️":
+    case "☀️": //dark to light
       themeButton.innerText = "🌚";
       cssTag.href = "";
+      localStorage.setItem("currentTheme", "light");
       break;
-    case "🌚":
+    case "🌚": //light to dark
       themeButton.innerText = "☀️";
       cssTag.href = "./styles/darkModeStyles.css";
+      localStorage.setItem("currentTheme", "dark");
       break;
     //all these bottom cases have a 0 width unicode char adjacent to them for all the redirect cases
     case "🌚​":
       themeButton.innerText = "☀️​";
       cssTag.href = "../styles/darkModeStyles.css";
+      localStorage.setItem("currentTheme", "dark");
       break;
     case "☀️​":
       themeButton.innerText = "🌚​";
       cssTag.href = "";
+      localStorage.setItem("currentTheme", "light");
       break;
   }
 });
