@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Workouts</title>
-</head>
-<body>
-    
-</body>
+
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="stylesheet" href="../styles/footer.css" />
+    <link
+      id="darkModeCSS"
+      rel="stylesheet"
+      href="../styles/darkModeStyles.css"
+    />
+  </head>
+  <body>
+    <div id="root">
+      <div class="mainContent">
+        <header>
+          <div id="welcomeWrapper">
+            <h1>Exercises</h1>
+            <button id="themeChange" style="font-size: x-large">☀️​</button>
+            <!--THE SUN HAS 0 WIDTH UNICODE CHAR-->
+          </div>
+          <div class="centerItem">
+            <input
+              style="
+                text-align: center;
+                width: 100%;
+                height: 30px;
+                border-radius: 10px;
+                color: black;
+              "
+              type="text"
+              placeholder="Search"
+            />
+          </div>
+        </header>
+        <div class="templateTitle centerItem">
+          <h2>Templates</h2>
+          <button class="addTemplate" id="addTemplate">Add Template!</button>
+        </div>
+        <div class="holder"></div>
+      </div>
+      <div class="footer-menu">
+        <div class="footer-controls">
+          <a href="./redirects/profile.html">
+            <button id="profileBtn" class="redirectBtn">
+              <span> 👤 </span> <br />
+              Profile
+            </button>
+          </a>
+          <a href="./redirects/history.html"
+            ><button id="historyBtn" class="redirectBtn">
+              <span> 🕑 </span> <br />
+              History
+            </button>
+          </a>
+          <a href="../index.html">
+            <button id="startBtn" class="redirectBtn">
+              <span> ➕ </span> <br />
+              Start Workout
+            </button></a
+          >
+          <a href=""
+            ><button id="workoutsBtn" class="redirectBtn">
+              <span> 🏋️ </span> <br />
+              Workouts
+            </button></a
+          >
+          <a href="./redirects/measurements.html"
+            ><button id="measure" class="redirectBtn">
+              <span> 📏 </span> <br />
+              Measure
+            </button></a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="../scripts/index/themeSelector.js"></script>
+  </body>
 </html>
