@@ -14,7 +14,7 @@ fetch(filePath)
       let template = htmlTemplate(JSON.parse(line));
       template.addEventListener("click", () => {
         let temp = JSON.parse(line);
-        alert(temp.name);
+        openInstructions(temp);
       });
       container.append(template);
     });
