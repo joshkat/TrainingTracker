@@ -44,11 +44,7 @@ const addTemplate = () => {
 
   //Rename button
   templateAdjustBtns[1].addEventListener("click", () => {
-    const newName = prompt("enter new name:");
-    if (newName.length > 0) div.innerHTML = index;
-    // templates[index].name = "test";
-
-    // HTMLtemplates[index].getElementsByClassName('div')[0].getElementsByClassName()
+    renameTemplate(newDiv);
   });
 
   //deleteButton
@@ -89,4 +85,22 @@ const removeIndex = (div) => {
   templates.splice(index, 1);
   HTMLbuttons.splice(index, 1);
   console.log(templates, HTMLtemplates);
+};
+
+const renameTemplate = (div) => {
+  const index = HTMLtemplates.indexOf(div);
+
+  //give input prompt
+  let newName = prompt(
+    "Enter the new template name \nA maximum of 10 char name will be saved"
+  );
+  //so long as str > 0
+  if (newName.length > 0) {
+    newName = newName.slice(0, 10); //cut off after 10 length
+    div
+      .getElementsByClassName("template-topHead")[0]
+      .getElementsByTagName("h1")[0].innerHTML = newName;
+    templates[index].name = newName;
+  }
+  console.log(index);
 };
