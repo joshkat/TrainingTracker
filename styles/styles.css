@@ -51,7 +51,7 @@ header {
 }
 
 .mainContent {
-  height: 100%;
+  height: 90%;
   background-color: white;
   display: flex;
   align-items: center;
