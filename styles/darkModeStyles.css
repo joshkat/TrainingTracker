@@ -34,3 +34,8 @@ button {
   background-color: #181a1b;
   border: solid 1px white;
 }
+
+input {
+  background-color: #2b2a33;
+  color: white;
+}
