@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/profile.css" />
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link
+      id="darkModeCSS"
+      rel="stylesheet"
+      href="../styles/darkModeStyles.css"
+    />
+    <link rel="stylesheet" href="../styles/footer.css" />
     <title>Profile</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div id="root">
+      <div class="mainContent">
+        <header>
+          <div id="welcomeWrapper">
+            <h1>Profile</h1>
+            <button id="themeChange" style="font-size: x-large">☀️​</button>
+            <!-- THE SUN HAS A 0 WIDTH UNICODE CHAR -->
+          </div>
+          <!--changes based on time-->
+        </header>
+        <div class="profileHolder">
+          <div class="profile-main">
+            <img
+              src="https://i.scdn.co/image/ab6775700000ee8522b26bdddf0ff534801e3756"
+              alt="profileIMG"
+              width="75px"
+            />
+            <span>Joshua Katayev</span>
+            <span>69,420 workouts</span>
+            <span>Goal: Get Big</span>
+            <button id="login-button">Login to Dropbox</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-menu">
+        <div class="footer-controls">
+          <a href=""
+            ><button id="profileBtn" class="redirectBtn">
+              <span> 👤 </span> <br />
+              Profile
+            </button></a
+          >
+          <a href="../redirects/history.html"
+            ><button id="historyBtn" class="redirectBtn">
+              <span> 🕑 </span> <br />
+              History
+            </button></a
+          >
+          <a href="../index.html"
+            ><button id="startBtn" class="redirectBtn">
+              <span> ➕ </span> <br />
+              Start Workout
+            </button></a
+          >
+          <a href="../redirects/workouts.html"
+            ><button id="workoutsBtn" class="redirectBtn">
+              <span> 🏋️ </span> <br />
+              Workouts
+            </button></a
+          >
+          <a href="../redirects/measurements.html"
+            ><button id="measure" class="redirectBtn">
+              <span> 📏 </span> <br />
+              Measure
+            </button></a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://www.dropbox.com/static/api/2/dropins.js"></script>
+  <script src="../scripts/index/themeSelector.js"></script>
+  <script src="../scripts/profile/login.js"></script>
+  <!-- dropbox sdk ^ -->
 </html>
