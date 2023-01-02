@@ -1,6 +1,6 @@
+const filePath = "../scraped.txt";
 const container = document.querySelector(".workoutHolder");
 
-const filePath = "../scraped.txt";
 // send a request for the text file to the server
 fetch(filePath)
   .then((response) => {
