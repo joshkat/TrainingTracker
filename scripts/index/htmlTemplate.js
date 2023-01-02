@@ -5,18 +5,10 @@ let templates = []; //by default will be null, put my own in later
 let HTMLtemplates = [];
 let HTMLbuttons = [];
 
-//dummy template to append
-let chest = new Template(
-  "Chest",
-  "This is a workout for my chest!",
-  premadeWorkouts,
-  []
-);
-
 function createTemplate() {
   const name = prompt("Template Name:");
   let rtrn = new Template(name, "", [], []);
-  return rtrn;
+  if (name != null) return rtrn;
 }
 
 //appending dummy template
