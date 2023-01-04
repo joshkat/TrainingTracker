@@ -15,6 +15,7 @@ profileBoxParent.innerHTML = `
       src="https://i.scdn.co/image/ab6775700000ee8522b26bdddf0ff534801e3756"
       alt="profileIMG"
       width="150px"
+      class="profileIMG"
     />
     <span class="name">NAME</span>
     <span>WORKOUT NUMBER</span>
