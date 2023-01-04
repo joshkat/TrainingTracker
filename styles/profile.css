@@ -4,5 +4,37 @@ img {
 
 .profile-main {
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.profileHolder {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 10px 0;
+  width: 355px;
+  background-color: white;
+  border: solid black 1px;
+  border-radius: 10px;
+}
+
+.buttonHolder {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 15vh;
+  background-color: white;
+  border: solid black 1px;
+  border-radius: 10px;
+  height: 100px;
+  width: 355px;
+}
+
+#login-button {
+  height: 30px;
 }

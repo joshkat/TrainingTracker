@@ -77,13 +77,6 @@ header {
   flex-direction: column;
 }
 
-.profileHolder {
-  border: red solid 1px;
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-}
-
 button {
   border: 0;
   border-radius: 5px;
