@@ -11,7 +11,8 @@
   width: 100%;
 }
 
-.profileHolder {
+.profileHolder,
+.buttonHolder {
   display: flex;
   flex-direction: column;
   padding: 10px 0 10px 0;
@@ -26,13 +27,9 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  position: absolute;
-  top: 15vh;
   background-color: white;
   border: solid black 1px;
-  border-radius: 10px;
   height: 100px;
-  width: 355px;
 }
 
 #login-button {
