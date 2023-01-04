@@ -46,6 +46,7 @@ loginButton.addEventListener("click", function () {
     .signInWithPopup(provider)
     .then(function (result) {
       // The login was successful
+      mainContent.removeChild(document.querySelector(".profileHolder"));
       console.log("The user is logged in");
       console.log("User ID:", result.user.uid);
       console.log("Email:", result.user.email);
@@ -63,7 +64,8 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // The user is logged in
     profileBoxParent.querySelector(".name").textContent = user.displayName; //change username
-    profileBoxParent.querySelector("img").src = user.photoURL; //change img
+    profileBoxParent.querySelector("img").src =
+      user.photoURL.slice(0, 83) + "s400-c"; //change img
 
     mainContent.append(profileBoxParent); //append when logged in
 
