@@ -5,8 +5,8 @@ profileBoxParent.classList.add("profileHolder");
 profileBoxParent.innerHTML = `
   <div class="profile-main">
     <img
-      src="https://i.scdn.co/image/ab6775700000ee8522b26bdddf0ff534801e3756"
-      alt="profileIMG"
+      src=""
+      alt="profile picture"
       width="150px"
       class="profileIMG"
     />
