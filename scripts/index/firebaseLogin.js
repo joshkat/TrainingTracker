@@ -10,6 +10,7 @@ var firebaseConfig = {
   apiKey: "AIzaSyDWzPbgPFSjVgRIFCoNC4BTAkpW9s3GZnw",
   authDomain: "training-tracker-d8802.firebaseapp.com",
   projectId: "training-tracker-d8802",
+  databaseURL: "https://training-tracker-d8802-default-rtdb.firebaseio.com",
   storageBucket: "training-tracker-d8802.appspot.com",
   messagingSenderId: "154863339050",
   appId: "1:154863339050:web:5e4898dd89b44f80c26553",
@@ -17,6 +18,7 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+let userID = "";
 let loginButton = loginBoxParent.querySelector("button");
 loginButton.addEventListener("click", function () {
   // Initiate the login process with Google authentication
@@ -29,6 +31,7 @@ loginButton.addEventListener("click", function () {
       mainContent.removeChild(document.querySelector(".profileHolder"));
       console.log("The user is logged in");
       console.log("User ID:", result.user.uid);
+      userID = result.user.uid;
       console.log("Email:", result.user.email);
       console.log("Display Name:", result.user.displayName);
     })
@@ -46,8 +49,11 @@ firebase.auth().onAuthStateChanged(function (user) {
     console.log("Email:", user.email);
     console.log("Display Name:", user.displayName);
     console.log("Profile Picture URL:", user.photoURL);
+    userID = user.uid;
   } else {
     // The user is not logged in then append login box
     mainContent.append(loginBoxParent);
   }
 });
+
+var database = firebase.database();
