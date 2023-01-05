@@ -1,12 +1,5 @@
 const mainContent = document.querySelector(".mainContent");
 
-let loginBoxParent = document.createElement("div");
-loginBoxParent.classList.add("buttonHolder");
-loginBoxParent.innerHTML = `
-    <span>Login using Google to get started!</span>
-    <button id="login-button">Login</button>
-`;
-
 let profileBoxParent = document.createElement("div");
 profileBoxParent.classList.add("profileHolder");
 profileBoxParent.innerHTML = `
@@ -35,29 +28,6 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-// select the login button
-const loginButton = loginBoxParent.querySelector("button");
-
-loginButton.addEventListener("click", function () {
-  // Initiate the login process with Google authentication
-  var provider = new firebase.auth.GoogleAuthProvider();
-  firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then(function (result) {
-      // The login was successful
-      mainContent.removeChild(document.querySelector(".profileHolder"));
-      console.log("The user is logged in");
-      console.log("User ID:", result.user.uid);
-      console.log("Email:", result.user.email);
-      console.log("Display Name:", result.user.displayName);
-    })
-    .catch(function (error) {
-      // An error occurred during the login process
-      console.error(error);
-    });
-});
-
 // const loginBox = document.getElementById("buttonHolder");
 const profileHolder = document.querySelector(".profile-main");
 firebase.auth().onAuthStateChanged(function (user) {
@@ -74,6 +44,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     console.log("Display Name:", user.displayName);
     console.log("Profile Picture URL:", user.photoURL);
   } else {
-    mainContent.append(loginBoxParent); //append when !logged in
+    window.location.replace("../index.html"); //redirect when !logged in
   }
 });

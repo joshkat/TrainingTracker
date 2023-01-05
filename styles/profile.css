@@ -11,27 +11,12 @@
   width: 100%;
 }
 
-.profileHolder,
-.buttonHolder {
+.profileHolder {
   display: flex;
   flex-direction: column;
   padding: 10px 0 10px 0;
   width: 355px;
   background-color: white;
-  border: solid black 1px;
+  border: solid grey 1px;
   border-radius: 10px;
-}
-
-.buttonHolder {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  background-color: white;
-  border: solid black 1px;
-  height: 100px;
-}
-
-#login-button {
-  height: 30px;
 }

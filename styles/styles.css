@@ -95,6 +95,32 @@ button {
   align-items: center;
 }
 
+.buttonHolder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 25vh;
+  background-color: white;
+  border: solid grey 1px;
+  overflow: scroll;
+  border-radius: 10px;
+  padding-top: 10px;
+  height: 300px;
+  width: 355px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#login-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 35px;
+  width: 150px;
+}
+
 * {
   /* disable text selection*/
   -webkit-touch-callout: none; /* iOS Safari */
