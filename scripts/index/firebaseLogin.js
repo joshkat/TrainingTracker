@@ -18,7 +18,6 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-let userID = "";
 let loginButton = loginBoxParent.querySelector("button");
 loginButton.addEventListener("click", function () {
   // Initiate the login process with Google authentication
@@ -31,7 +30,6 @@ loginButton.addEventListener("click", function () {
       mainContent.removeChild(document.querySelector(".profileHolder"));
       console.log("The user is logged in");
       console.log("User ID:", result.user.uid);
-      userID = result.user.uid;
       console.log("Email:", result.user.email);
       console.log("Display Name:", result.user.displayName);
     })
@@ -45,11 +43,6 @@ loginButton.addEventListener("click", function () {
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // The user is logged in, you can access their data here
-    console.log("User ID:", user.uid);
-    console.log("Email:", user.email);
-    console.log("Display Name:", user.displayName);
-    console.log("Profile Picture URL:", user.photoURL);
-    userID = user.uid;
   } else {
     // The user is not logged in then append login box
     mainContent.append(loginBoxParent);

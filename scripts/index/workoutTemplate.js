@@ -21,9 +21,6 @@ const premadeWorkouts = [
   ["Incline Press", "re", "re"],
 ];
 
-let chestWorkout = new Template("Chest", ">.<", []);
-let backWorkout = new Template("Back", "", premadeWorkouts);
-
 function htmlTemplate(objTemplate) {
   let templateBorder = document.createElement("div");
   templateBorder.innerHTML = `

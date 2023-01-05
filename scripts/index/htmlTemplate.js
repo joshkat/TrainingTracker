@@ -3,7 +3,7 @@ let templateHolder = document.getElementsByClassName("holder")[0];
 let addTemplateBtn = document.getElementById("addTemplate");
 let templates = []; //by default will be null, put my own in later
 let HTMLtemplates = [];
-let HTMLbuttons = [];
+let userId;
 
 function createTemplate() {
   const name = prompt("Template Name:");
@@ -12,9 +12,14 @@ function createTemplate() {
 }
 
 //appending dummy template
-const addTemplate = () => {
-  const newTemplate = createTemplate();
-  const newDiv = htmlTemplate(newTemplate); //generates div to append
+function addTemplate(temp) {
+  let newTemplate, newDiv;
+  if (temp == undefined) {
+    newTemplate = createTemplate(); //this is simply to get template name and create template obj
+    newDiv = htmlTemplate(newTemplate); //generates div to append
+  } else {
+    newDiv = htmlTemplate(temp);
+  }
   const optionsBtn = newDiv.getElementsByClassName("template-button")[0];
   const menu = newDiv
     .getElementsByClassName("template-topHead")[0]
@@ -24,8 +29,8 @@ const addTemplate = () => {
     .getElementsByClassName("template-menu")[0]
     .getElementsByTagName("li"); //gets the list of btns in menu
   HTMLtemplates.push(newDiv); //pushes div to HTMLref arr
-  HTMLbuttons.push(optionsBtn); //pushes btn to HTMLref arr
   templates.push(newTemplate); //would push real template
+  //firebase db storage at bottom of method
   let menuOpen = false;
 
   //logs current arr pos that template is in
@@ -71,9 +76,18 @@ const addTemplate = () => {
 
   //appends div to document
   templateHolder.appendChild(newDiv);
-};
 
-addTemplateBtn.addEventListener("click", addTemplate);
+  if (temp == undefined) {
+    // get the current user's UID
+    userId = firebase.auth().currentUser.uid;
+    // add the template to the user's templates in Firebase
+    database.ref(`users/${userId}/templates`).set(templates);
+  }
+}
+
+addTemplateBtn.addEventListener("click", () => {
+  addTemplate();
+});
 
 const removeIndex = (div) => {
   // remove the div element from the container
@@ -83,7 +97,9 @@ const removeIndex = (div) => {
   const index = HTMLtemplates.indexOf(div);
   HTMLtemplates.splice(index, 1);
   templates.splice(index, 1);
-  HTMLbuttons.splice(index, 1);
+
+  database.ref(`users/${userId}/templates`).set(templates);
+
   console.log(templates, HTMLtemplates);
 };
 
@@ -91,16 +107,40 @@ const renameTemplate = (div) => {
   const index = HTMLtemplates.indexOf(div);
 
   //give input prompt
-  let newName = prompt(
-    "Enter the new template name \nA maximum of 10 char name will be saved"
-  );
+  let newName = prompt("Enter the new template name:");
   //so long as str > 0
   if (newName.length > 0) {
-    newName = newName.slice(0, 10); //cut off after 10 length
     div
       .getElementsByClassName("template-topHead")[0]
       .getElementsByTagName("h1")[0].innerText = newName;
     templates[index].name = newName;
   }
+
+  //update firebase
+  database.ref(`users/${userId}/templates`).set(templates);
   console.log(index);
 };
+
+//this is to setup everything depending on if user is logged in or not
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    userId = user.uid;
+    // The user is logged in, setup template array here
+    database
+      .ref(`users/${userId}/templates`)
+      .once("value")
+      .then(function (snapshot) {
+        setupWhenLoggedIn(snapshot.val());
+      });
+  }
+});
+
+//arr being passed in is template arr from firebase
+function setupWhenLoggedIn(arr) {
+  if (arr == null) return;
+
+  for (var i = 0; i < arr.length; i++) {
+    const newDiv = htmlTemplate(arr[i]);
+  }
+  console.log("FUCK");
+}

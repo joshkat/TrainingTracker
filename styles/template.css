@@ -33,6 +33,7 @@
   font-weight: bolder;
   color: black;
   overflow: scroll;
+  white-space: nowrap;
 }
 
 .template-button {
