@@ -48,8 +48,8 @@ function addTemplate(temp) {
   //Rename button
   templateAdjustBtns[1].addEventListener("click", () => {
     renameTemplate(newDiv);
-    menu.classList.toggle("opened");
-    menuOpen = false;
+    // menu.classList.toggle("opened");
+    // menuOpen = false;
   });
 
   //deleteButton
@@ -118,7 +118,6 @@ const renameTemplate = (div) => {
 
   //update firebase
   database.ref(`users/${userId}/templates`).set(templates);
-  console.log(index);
 };
 
 //this is to setup everything depending on if user is logged in or not
@@ -132,6 +131,8 @@ firebase.auth().onAuthStateChanged(function (user) {
       .then(function (snapshot) {
         setupWhenLoggedIn(snapshot.val());
       });
+  } else {
+    templateHolder.innerHTML = "";
   }
 });
 
@@ -140,6 +141,7 @@ function setupWhenLoggedIn(arr) {
   if (arr == null) return;
 
   templates = arr;
+  templateHolder.innerHTML = "";
   for (var i = 0; i < arr.length; i++) {
     addTemplate(arr[i]);
   }
