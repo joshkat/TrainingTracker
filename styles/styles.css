@@ -19,7 +19,7 @@ header {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  width: 100%;
+  width: 350px;
 }
 
 #welcomeWrapper {
