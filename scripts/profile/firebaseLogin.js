@@ -37,6 +37,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     profileBoxParent.querySelector("img").src =
       user.photoURL.slice(0, 83) + "s400-c"; //change img
 
+    mainContent.removeChild(document.querySelector(".profile-main"));
     mainContent.append(profileBoxParent); //append when logged in
 
     console.log("User ID:", user.uid);

@@ -138,10 +138,9 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 //arr being passed in is template arr from firebase
 function setupWhenLoggedIn(arr) {
-  if (arr == null) return;
-
-  templates = arr;
   templateHolder.innerHTML = "";
+  if (arr == null) return;
+  templates = arr;
   for (var i = 0; i < arr.length; i++) {
     addTemplate(arr[i]);
   }
