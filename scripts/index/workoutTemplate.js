@@ -22,6 +22,7 @@ const premadeWorkouts = [
 ];
 
 function htmlTemplate(objTemplate) {
+  if (objTemplate.lastWorkout === undefined) objTemplate.lastWorkout = "";
   let templateBorder = document.createElement("div");
   templateBorder.innerHTML = `
   <div class="template-topHead">

@@ -17,6 +17,7 @@ function addTemplate(temp) {
   if (temp == undefined) {
     newTemplate = createTemplate(); //this is simply to get template name and create template obj
     newDiv = htmlTemplate(newTemplate); //generates div to append
+    templates.push(newTemplate); //would push real template
   } else {
     newDiv = htmlTemplate(temp);
   }
@@ -29,7 +30,6 @@ function addTemplate(temp) {
     .getElementsByClassName("template-menu")[0]
     .getElementsByTagName("li"); //gets the list of btns in menu
   HTMLtemplates.push(newDiv); //pushes div to HTMLref arr
-  templates.push(newTemplate); //would push real template
   //firebase db storage at bottom of method
   let menuOpen = false;
 
@@ -139,8 +139,9 @@ firebase.auth().onAuthStateChanged(function (user) {
 function setupWhenLoggedIn(arr) {
   if (arr == null) return;
 
+  templates = arr;
   for (var i = 0; i < arr.length; i++) {
-    const newDiv = htmlTemplate(arr[i]);
+    addTemplate(arr[i]);
   }
-  console.log("FUCK");
+  console.log("templates", templates, "\n", "HTML", HTMLtemplates);
 }
