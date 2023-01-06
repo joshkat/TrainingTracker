@@ -107,7 +107,7 @@ const renameTemplate = (div) => {
   const index = HTMLtemplates.indexOf(div);
 
   //give input prompt
-  let newName = prompt("Enter the new template name:");
+  let newName = prompt("Enter the new template name:", templates[index].name);
   //so long as str > 0
   if (newName.length > 0) {
     div

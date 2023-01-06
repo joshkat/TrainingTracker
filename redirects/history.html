@@ -1,12 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>History</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link
+      id="darkModeCSS"
+      rel="stylesheet"
+      href="../styles/darkModeStyles.css"
+    />
+    <link rel="stylesheet" href="../styles/footer.css" />
+    <link rel="icon" href="../icons/history.png" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="mainContent">
+        <header>
+          <div id="welcomeWrapper">
+            <h1>History</h1>
+            <button id="themeChange" style="font-size: x-large">☀️​</button>
+            <!-- THE SUN HAS A 0 WIDTH UNICODE CHAR -->
+          </div>
+        </header>
+      </div>
+      <div class="footer-menu">
+        <div class="footer-controls">
+          <a href="../redirects/profile.html">
+            <button id="profileBtn" class="redirectBtn">
+              <img
+                src="../icons/profile.png"
+                alt="👤"
+                height="25px"
+                width="25px"
+              />
+              <br />
+              Profile
+            </button>
+          </a>
+
+          <a>
+            <button id="historyBtn" class="redirectBtn">
+              <img
+                src="../icons/history.png"
+                alt="🕑"
+                height="25px"
+                width="25px"
+              />
+              <br />
+              History
+            </button>
+          </a>
+          <a href="../index.html"
+            ><button id="startBtn" class="redirectBtn">
+              <img
+                src="../icons/start_workout.png"
+                alt="🏠"
+                height="25px"
+                width="25px"
+              />
+              <br />
+              Home
+            </button>
+          </a>
+          <a href="../redirects/workouts.html"
+            ><button id="workoutsBtn" class="redirectBtn">
+              <img
+                src="../icons/workouts.png"
+                alt="🏋️"
+                height="25px"
+                width="25px"
+              />
+              <br />
+              Workouts
+            </button>
+          </a>
+          <a href="../redirects/measurements.html">
+            <button id="measure" class="redirectBtn">
+              <img
+                src="../icons/measure.png"
+                alt="📏"
+                height="25px"
+                width="25px"
+              /><br />
+              Measure
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+
+  <script src="../scripts/index/themeSelector.js"></script>
 </html>
