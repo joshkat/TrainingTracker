@@ -41,3 +41,8 @@ input {
   background-color: #2b2a33;
   color: white;
 }
+
+.loader {
+  border: 10px solid grey; /* Light grey */
+  border-top: 10px solid rgb(59, 169, 252); /* Blue */
+}
