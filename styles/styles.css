@@ -28,8 +28,13 @@ header {
   align-items: center;
 }
 
-#themeChange {
-  background-color: none;
+#themeChange,
+#closeMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
 }
 
 .centerItem {
