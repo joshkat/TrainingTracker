@@ -40,3 +40,91 @@ function htmlTemplate(objTemplate) {
   templateBorder.classList.add("template-border");
   return templateBorder;
 }
+
+function createTemplatePopUp() {
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("template-popup");
+  wrapper.innerHTML = `
+  <div class="template-head">
+  <header class="template-header">
+    <button class="template-popup-button">❌</button>
+    <button class="template-popup-button template-save">
+      Save
+    </button>
+  </header>
+  <input
+    type="text"
+    id="template-name"
+    class="template-headerInput"
+    placeholder="Template Name"
+  />
+  <textarea
+    name="description"
+    id="template-description"
+    class="template-headerInput"
+    placeholder="Notes:"
+    rows="5"
+  ></textarea>
+</div>
+<div class="template-workoutWrapper">
+  <div class="template-workoutWrapper-buttons">
+    <button>add workout from list</button>
+    <button>add custom workout</button>
+  </div>
+  <div class="template-workout">
+    <header class="template-workout-header">
+      <div>Name</div>
+      <button>Delete ❌</button>
+    </header>
+    <div class="template-info">
+      <div>Set</div>
+      <!-- keep blank divs here for spacing -->
+      <div></div>
+      <div>lbs</div>
+      <div>reps</div>
+    </div>
+    <div class="template-info">
+      <div>0</div>
+      <div></div>
+      <div></div>
+      <input
+        class="template-infoInput"
+        type="number"
+        placeholder="#"
+      />
+      <input
+        class="template-infoInput"
+        type="number"
+        placeholder="#"
+      />
+    </div>
+    <div class="template-info">
+      <div>1</div>
+      <div></div>
+      <div></div>
+      <input
+        class="template-infoInput"
+        type="number"
+        placeholder="#"
+      />
+      <input
+        class="template-infoInput"
+        type="number"
+        placeholder="#"
+      />
+    </div>
+  </div>
+</div>
+  `;
+  document.querySelector(".holder").appendChild(wrapper);
+}
+
+//activates when add template btn is hit
+function createTemplate() {
+  createTemplatePopUp();
+  return;
+  const arr = [prompt("Template Name:"), prompt("Workouts:")];
+
+  let rtrn = new Template(arr[0], "", arr[1], []);
+  if (arr[0] != null) return rtrn;
+}

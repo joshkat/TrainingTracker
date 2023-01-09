@@ -5,12 +5,6 @@ let templates = []; //by default will be null, put my own in later
 let HTMLtemplates = [];
 let userId;
 
-function createTemplate() {
-  const name = prompt("Template Name:");
-  let rtrn = new Template(name, "", [], []);
-  if (name != null) return rtrn;
-}
-
 //appending dummy template
 function addTemplate(temp) {
   let newTemplate, newDiv;
@@ -30,6 +24,7 @@ function addTemplate(temp) {
     .getElementsByClassName("template-menu")[0]
     .getElementsByTagName("li"); //gets the list of btns in menu
   HTMLtemplates.push(newDiv); //pushes div to HTMLref arr
+
   //firebase db storage at bottom of method
   let menuOpen = false;
 
@@ -37,6 +32,7 @@ function addTemplate(temp) {
   newDiv.addEventListener("click", (event) => {
     if (menuOpen != true) {
       console.log(HTMLtemplates.indexOf(event.currentTarget));
+      //startWorkout(HTMLtemplates.indexOf(event.currentTarget)) //start the workout using the current template
     }
   });
 
