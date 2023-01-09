@@ -37,7 +37,8 @@ button {
   border: solid 1px white;
 }
 
-input {
+input,
+textarea {
   background-color: #2b2a33;
   color: white;
 }
@@ -45,4 +46,10 @@ input {
 .loader {
   border: 10px solid grey; /* Light grey */
   border-top: 10px solid rgb(59, 169, 252); /* Blue */
+}
+
+.template-popup,
+#template-name,
+#template-description {
+  background-color: #181a1b;
 }

@@ -1,3 +1,4 @@
+/*styling for main page templates*/
 .template-topHead {
   display: flex;
   flex-direction: row;
@@ -77,4 +78,115 @@ li {
   color: grey;
   font-size: small;
   padding: 0 5px 10px 5px;
+}
+
+/*styling for create template popup*/
+.template-popup {
+  border: solid 1px red;
+  display: flex;
+  width: 350px;
+  overflow: scroll;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  z-index: 1;
+  background-color: white;
+  border-radius: 10px 10px 0 0;
+  color: black;
+  height: 90vh;
+}
+
+.template-save {
+  background-color: #04aa6d;
+}
+
+.template-popup-button {
+  height: 30px;
+  width: 50px;
+}
+
+.template-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.template-head {
+  display: flex;
+  flex-direction: column;
+}
+
+#template-name {
+  font-size: x-large;
+  border: none;
+  width: min-content;
+}
+
+#template-description {
+  resize: none;
+  font-size: 16px;
+  border: none;
+}
+
+.template-workoutWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.template-workoutWrapper-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 5px;
+}
+
+.template-workoutWrapper-buttons button {
+  width: 160px;
+  height: 30px;
+}
+
+.template-workout {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 98%;
+  padding: 5px 0 5px 0;
+  margin: 5px;
+  border: solid 1px gray;
+}
+
+.template-workout-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 98%;
+}
+
+.template-info {
+  display: flex;
+  width: 98%;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.template-infoInput {
+  width: 50px;
+  size-adjust: none;
+  border: none;
+  border-radius: 5px;
+  border: solid 0.5px grey;
+}
+
+/* margins on popup */
+.template-popup-button,
+.template-headerInput {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
