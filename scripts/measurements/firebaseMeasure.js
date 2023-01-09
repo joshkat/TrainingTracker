@@ -1,13 +1,13 @@
-let userID, database;
+let userId, database, temp;
 const profileHolder = document.querySelector(".profile-main");
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // The user is logged in
-    userID = user.uid;
+    userId = user.uid;
     database = firebase.database();
     mainContent.innerHTML = "";
     database
-      .ref(`users/${userID}/measurements/`)
+      .ref(`users/${userId}/measurements`)
       .once("value")
       .then(function (snapshot) {
         setupWhenLoggedIn(snapshot.val());
@@ -22,16 +22,21 @@ function setupWhenLoggedIn(dbArr) {
   //add DB event listeners
   const inputArr = info.querySelectorAll("input");
   for (var i = 0; i < inputArr.length; i++) {
-    if (dbArr[inputArr[i].id] != undefined) {
-      inputArr[i].value = dbArr[inputArr[i].id];
-    }
     inputArr[i].addEventListener("input", (event) => {
-      if (event.target.value !== "") {
-        //when str is num
+      if (event.target.value == "") {
+        //when str is empty return ""
+        database.ref(`users/${userId}/measurements/${event.target.id}`).set("");
+      } else {
+        //when str has val return curr val
         database
-          .ref(`users/${userID}/measurements/${event.target.id}`)
+          .ref(`users/${userId}/measurements/${event.target.id}`)
           .set(event.target.value);
       }
     });
+
+    if (dbArr == null) return;
+    if (dbArr[inputArr[i].id] != undefined) {
+      inputArr[i].value = dbArr[inputArr[i].id];
+    }
   }
 }
