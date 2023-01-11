@@ -9,7 +9,7 @@ let userId;
 function addTemplate(temp) {
   let newTemplate, newDiv;
   if (temp == undefined) {
-    newTemplate = createTemplate(); //this is simply to get template name and create template obj
+    newTemplate = createTemplatePopUp(templates); //this is simply to get template name and create template obj
     newDiv = htmlTemplate(newTemplate); //generates div to append
     templates.push(newTemplate); //would push real template
   } else {

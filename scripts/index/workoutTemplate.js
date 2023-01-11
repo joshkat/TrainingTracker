@@ -1,11 +1,8 @@
 class Template {
-  workouts = ["This template is currently empty :("]; //text to be shown to user
-  constructor(name, description, workouts, lastWorkout) {
+  constructor(name, notes, workouts, lastWorkout) {
     this.name = name; //needed to create
-    this.description = description; //could be empty str to init
-    if (workouts.length != 0) {
-      this.workouts = workouts; //empty arr to init
-    }
+    this.notes = notes; //could be empty str to init
+    this.workouts = workouts; //arr.length > 1 needed to be added to db
     this.lastWorkout = lastWorkout; //empty str to init
   }
 
@@ -41,7 +38,57 @@ function htmlTemplate(objTemplate) {
   return templateBorder;
 }
 
-function createTemplatePopUp() {
+function htmlWorkoutInPopup(obj) {
+  //for blank template for now, obj.length rtrns undef rem that
+  const htmlWorkout = document.createElement("div");
+  htmlWorkout.classList.add("template-workout");
+  htmlWorkout.innerHTML = `
+  <header class="template-workout-header">
+    <div class="template-name">${obj}</div>
+    <button>Delete ❌</button>
+  </header>
+  <div class="template-info">
+    <div>Set</div>
+    <!-- keep blank divs here for spacing -->
+    <div></div>
+    <div>lbs</div>
+    <div>reps</div>
+  </div>
+  <div class="template-info">
+    <div>0</div>
+    <div></div>
+    <div></div>
+    <input
+      class="template-infoInput"
+      type="number"
+      placeholder="#"
+    />
+    <input
+      class="template-infoInput"
+      type="number"
+      placeholder="#"
+    />
+  </div>
+  <div class="template-info">
+    <div>1</div>
+    <div></div>
+    <div></div>
+    <input
+      class="template-infoInput"
+      type="number"
+      placeholder="#"
+    />
+    <input
+      class="template-infoInput"
+      type="number"
+      placeholder="#"
+    />
+  </div>
+  `;
+  return htmlWorkout;
+}
+
+function createTemplatePopUp(templateArr) {
   const wrapper = document.createElement("div");
   wrapper.classList.add("template-popup");
   wrapper.innerHTML = `
@@ -71,60 +118,77 @@ function createTemplatePopUp() {
     <button>add workout from list</button>
     <button>add custom workout</button>
   </div>
-  <div class="template-workout">
-    <header class="template-workout-header">
-      <div>Name</div>
-      <button>Delete ❌</button>
-    </header>
-    <div class="template-info">
-      <div>Set</div>
-      <!-- keep blank divs here for spacing -->
-      <div></div>
-      <div>lbs</div>
-      <div>reps</div>
-    </div>
-    <div class="template-info">
-      <div>0</div>
-      <div></div>
-      <div></div>
-      <input
-        class="template-infoInput"
-        type="number"
-        placeholder="#"
-      />
-      <input
-        class="template-infoInput"
-        type="number"
-        placeholder="#"
-      />
-    </div>
-    <div class="template-info">
-      <div>1</div>
-      <div></div>
-      <div></div>
-      <input
-        class="template-infoInput"
-        type="number"
-        placeholder="#"
-      />
-      <input
-        class="template-infoInput"
-        type="number"
-        placeholder="#"
-      />
-    </div>
-  </div>
 </div>
   `;
+
+  //append this to template-workoutWrapper
+
+  //alright, plan is to create a "return template" and adjust it as the template is created.
+  let rtrn = new Template("Untitled Template", "", [], "PREVIOUS WORKOUT");
+  //workouts are an arr, which consist of ["name", #index, "set arr"]
+  //set arr will be used as follows
+  // sets.length is # of sets; set[i,j] i is lbs j is reps rtrn.workouts[2][i,j]
+
+  const headerBtns = wrapper.querySelectorAll(".template-popup-button");
+  headerBtns[0].addEventListener("click", () => {
+    document.querySelector(".holder").removeChild(wrapper);
+    //for close w/o save button
+  });
+
+  headerBtns[1].addEventListener("click", () => {
+    if (rtrn.workouts.length != 0) {
+      // templateArr.push(rtrn);
+      //update in db later
+    }
+    console.log(rtrn);
+  });
+
+  const nameInput = wrapper.querySelector("input");
+  nameInput.addEventListener("input", (event) => {
+    if (event.target.value != "") {
+      rtrn.name = event.target.value;
+    } else {
+      //when str is empty add a red highlight to the box
+      rtrn.name = "Untitled Template";
+    }
+  });
+
+  const templateNotes = wrapper.querySelector("textarea");
+  templateNotes.addEventListener("input", (event) => {
+    rtrn.notes = event.target.value;
+  });
+
+  const buttons = wrapper.querySelectorAll("button"); //btn [2] is from list, [3] is custom workout
+
+  //meant for the adding custom workout, will be nearly identical to adding from list
+  buttons[3].addEventListener("click", () => {
+    const workoutName = prompt("What's the custom workout name?\n");
+    let workout = htmlWorkoutInPopup(workoutName);
+    wrapper.querySelector(".template-workoutWrapper").appendChild(workout);
+    //for db portion
+    rtrn.workouts.push([workoutName]); //pushes name & index to arr the rest is up to event listeners
+
+    //remove specified template
+    workout.querySelector("button").addEventListener("click", () => {
+      removeWorkoutFromTemplate(workout, rtrn);
+    });
+  });
+
   document.querySelector(".holder").appendChild(wrapper);
 }
 
-//activates when add template btn is hit
-function createTemplate() {
-  createTemplatePopUp();
-  return;
-  const arr = [prompt("Template Name:"), prompt("Workouts:")];
+function removeWorkoutFromTemplate(workout, templateObj) {
+  const htmlWorkouts = document.querySelectorAll(".template-workout");
+  const htmlName = workout.querySelector(".template-name").innerText;
 
-  let rtrn = new Template(arr[0], "", arr[1], []);
-  if (arr[0] != null) return rtrn;
+  //finds and sets index of htmlName to later remove from templateObj
+  for (var i = 0; i < htmlWorkouts.length; i++) {
+    let temp = htmlWorkouts[i].querySelector(".template-name").innerText;
+    if (temp == htmlName) {
+      templateObj.workouts.splice(i, 1);
+      break;
+    }
+  }
+  //removes from document & obj
+  document.querySelector(".template-workoutWrapper").removeChild(workout);
 }

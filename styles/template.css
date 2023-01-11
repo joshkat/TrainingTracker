@@ -121,7 +121,6 @@ li {
 #template-name {
   font-size: x-large;
   border: none;
-  width: min-content;
 }
 
 #template-description {
@@ -186,6 +185,7 @@ li {
 /* margins on popup */
 .template-popup-button,
 .template-headerInput {
+  outline: none;
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 10px;
