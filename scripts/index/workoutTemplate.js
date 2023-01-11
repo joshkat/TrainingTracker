@@ -95,7 +95,7 @@ function createTemplatePopUp(templateArr) {
   <div class="template-head">
   <header class="template-header">
     <button class="template-popup-button">❌</button>
-    <button class="template-popup-button template-save">
+    <button class="template-popup-button template-save" style="background-color:red">
       Save
     </button>
   </header>
@@ -121,10 +121,7 @@ function createTemplatePopUp(templateArr) {
 </div>
   `;
 
-  //append this to template-workoutWrapper
-
-  //alright, plan is to create a "return template" and adjust it as the template is created.
-  let rtrn = new Template("Untitled Template", "", [], "PREVIOUS WORKOUT");
+  let rtrn = new Template("Untitled", "", [], "");
   //workouts are an arr, which consist of ["name", #index, "set arr"]
   //set arr will be used as follows
   // sets.length is # of sets; set[i,j] i is lbs j is reps rtrn.workouts[2][i,j]
@@ -137,8 +134,14 @@ function createTemplatePopUp(templateArr) {
 
   headerBtns[1].addEventListener("click", () => {
     if (rtrn.workouts.length != 0) {
-      // templateArr.push(rtrn);
-      //update in db later
+      templateArr.push(rtrn);
+      addTemplate(rtrn);
+      document.querySelector(".holder").removeChild(wrapper);
+
+      // get the current user's UID
+      userId = firebase.auth().currentUser.uid;
+      // add the template to the user's templates in Firebase
+      database.ref(`users/${userId}/templates`).set(templates);
     }
     console.log(rtrn);
   });
@@ -163,6 +166,11 @@ function createTemplatePopUp(templateArr) {
   //meant for the adding custom workout, will be nearly identical to adding from list
   buttons[3].addEventListener("click", () => {
     const workoutName = prompt("What's the custom workout name?\n");
+    if (workoutName == null || workoutName == "") {
+      //when empty or null
+      return;
+    }
+    headerBtns[1].style = ""; //turns save btn back to green
     let workout = htmlWorkoutInPopup(workoutName);
     wrapper.querySelector(".template-workoutWrapper").appendChild(workout);
     //for db portion
@@ -171,6 +179,9 @@ function createTemplatePopUp(templateArr) {
     //remove specified template
     workout.querySelector("button").addEventListener("click", () => {
       removeWorkoutFromTemplate(workout, rtrn);
+      if (rtrn.workouts.length == 0) {
+        headerBtns[1].style = "background-color:red";
+      }
     });
   });
 

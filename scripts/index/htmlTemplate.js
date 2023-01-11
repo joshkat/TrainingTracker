@@ -9,11 +9,10 @@ let userId;
 function addTemplate(temp) {
   let newTemplate, newDiv;
   if (temp == undefined) {
-    newTemplate = createTemplatePopUp(templates); //this is simply to get template name and create template obj
-    newDiv = htmlTemplate(newTemplate); //generates div to append
-    templates.push(newTemplate); //would push real template
+    newTemplate = createTemplatePopUp(templates); //used when creating brand new templates
+    return;
   } else {
-    newDiv = htmlTemplate(temp);
+    newDiv = htmlTemplate(temp); //reuse for appending templates after firebase login
   }
   const optionsBtn = newDiv.getElementsByClassName("template-button")[0];
   const menu = newDiv
@@ -24,8 +23,6 @@ function addTemplate(temp) {
     .getElementsByClassName("template-menu")[0]
     .getElementsByTagName("li"); //gets the list of btns in menu
   HTMLtemplates.push(newDiv); //pushes div to HTMLref arr
-
-  //firebase db storage at bottom of method
   let menuOpen = false;
 
   //logs current arr pos that template is in
@@ -72,13 +69,6 @@ function addTemplate(temp) {
 
   //appends div to document
   templateHolder.appendChild(newDiv);
-
-  if (temp == undefined) {
-    // get the current user's UID
-    userId = firebase.auth().currentUser.uid;
-    // add the template to the user's templates in Firebase
-    database.ref(`users/${userId}/templates`).set(templates);
-  }
 }
 
 addTemplateBtn.addEventListener("click", () => {
