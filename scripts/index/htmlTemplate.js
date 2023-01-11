@@ -28,7 +28,7 @@ function addTemplate(temp) {
   //logs current arr pos that template is in
   newDiv.addEventListener("click", (event) => {
     if (menuOpen != true) {
-      console.log(HTMLtemplates.indexOf(event.currentTarget));
+      console.log(templates[HTMLtemplates.indexOf(event.currentTarget)]);
       //startWorkout(HTMLtemplates.indexOf(event.currentTarget)) //start the workout using the current template
     }
   });

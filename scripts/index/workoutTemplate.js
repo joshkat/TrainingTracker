@@ -19,6 +19,12 @@ const premadeWorkouts = [
 ];
 
 function htmlTemplate(objTemplate) {
+  let workouts = [];
+  //gets rid of notes and sets info from workout arr
+  for (var i = 0; i < objTemplate.workouts.length; i++) {
+    workouts.push(objTemplate.workouts[i][0]);
+  }
+
   if (objTemplate.lastWorkout === undefined) objTemplate.lastWorkout = "";
   let templateBorder = document.createElement("div");
   templateBorder.innerHTML = `
@@ -31,7 +37,7 @@ function htmlTemplate(objTemplate) {
     <li>❌ Delete</li>
   </ol>
   </div>
-  <div class="template-workOutList"> ${objTemplate.workouts} </div>
+  <div class="template-workOutList"> ${workouts} </div>
   <div class="template-lastWorkout"> ${objTemplate.lastWorkout} </div>
   `;
   templateBorder.classList.add("template-border");
@@ -54,38 +60,33 @@ function htmlWorkoutInPopup(obj) {
     <div>lbs</div>
     <div>reps</div>
   </div>
-  <div class="template-info">
-    <div>0</div>
-    <div></div>
-    <div></div>
-    <input
-      class="template-infoInput"
-      type="number"
-      placeholder="#"
-    />
-    <input
-      class="template-infoInput"
-      type="number"
-      placeholder="#"
-    />
-  </div>
-  <div class="template-info">
-    <div>1</div>
-    <div></div>
-    <div></div>
-    <input
-      class="template-infoInput"
-      type="number"
-      placeholder="#"
-    />
-    <input
-      class="template-infoInput"
-      type="number"
-      placeholder="#"
-    />
+  <div class="buttonWrapper">
+    <button id="addSet">add new set</button>
+    <button id="removeSet">remove last set</button>
   </div>
   `;
   return htmlWorkout;
+}
+
+function htmlWorkoutSetInPopup(currentSet) {
+  let htmlSet = document.createElement("div");
+  htmlSet.classList.add("template-info");
+  htmlSet.innerHTML = `
+  <div>${currentSet}</div>
+  <div></div>
+  <div></div>
+  <input
+    class="template-infoInput"
+    type="number"
+    placeholder="#"
+  />
+  <input
+    class="template-infoInput"
+    type="number"
+    placeholder="#"
+  />
+  `;
+  return htmlSet;
 }
 
 function createTemplatePopUp(templateArr) {
@@ -174,32 +175,78 @@ function createTemplatePopUp(templateArr) {
     let workout = htmlWorkoutInPopup(workoutName);
     wrapper.querySelector(".template-workoutWrapper").appendChild(workout);
     //for db portion
-    rtrn.workouts.push([workoutName]); //pushes name & index to arr the rest is up to event listeners
+    rtrn.workouts.push([workoutName, "notes", []]); //pushes name & index to arr the rest is up to event listeners
 
-    //remove specified template
+    //remove specified workout
     workout.querySelector("button").addEventListener("click", () => {
-      removeWorkoutFromTemplate(workout, rtrn);
+      editWorkout(workout, rtrn, "removeWorkout");
       if (rtrn.workouts.length == 0) {
         headerBtns[1].style = "background-color:red";
       }
+    });
+
+    //add set to specified workout
+    workout.querySelector("#addSet").addEventListener("click", () => {
+      editWorkout(workout, rtrn, "addSet");
+    });
+
+    workout.querySelector("#removeSet").addEventListener("click", () => {
+      editWorkout(workout, rtrn, "removeSet");
     });
   });
 
   document.querySelector(".holder").appendChild(wrapper);
 }
 
-function removeWorkoutFromTemplate(workout, templateObj) {
+//use this to remove whole workouts & add/remove sets from individual workouts
+function editWorkout(workout, templateObj, str) {
   const htmlWorkouts = document.querySelectorAll(".template-workout");
   const htmlName = workout.querySelector(".template-name").innerText;
 
   //finds and sets index of htmlName to later remove from templateObj
   for (var i = 0; i < htmlWorkouts.length; i++) {
     let temp = htmlWorkouts[i].querySelector(".template-name").innerText;
-    if (temp == htmlName) {
+    if (temp == htmlName && str == "removeWorkout") {
+      //removes from document & obj
       templateObj.workouts.splice(i, 1);
-      break;
+      document.querySelector(".template-workoutWrapper").removeChild(workout);
+      return;
+    }
+    if (temp == htmlName && str == "addSet") {
+      const setHTML = htmlWorkoutSetInPopup(
+        templateObj.workouts[i][2].length + 1
+      );
+
+      addSetListeners(setHTML, templateObj, workout, i);
+
+      workout
+        .querySelector(".buttonWrapper")
+        .insertAdjacentElement("beforebegin", setHTML);
+      templateObj.workouts[i][2].push(["", ""]);
+      //push a set array [lbs, reps] by default "" for both
+      return;
+    }
+    if (temp == htmlName && str == "removeSet") {
+      let x = workout.querySelectorAll(".template-info");
+      if (x.length > 1) {
+        workout.removeChild(x[x.length - 1]);
+        templateObj.workouts[i][2].pop();
+        return;
+      }
     }
   }
-  //removes from document & obj
-  document.querySelector(".template-workoutWrapper").removeChild(workout);
+}
+
+function addSetListeners(setHTML, obj, workout, workoutIndex) {
+  const setIndex = workout.querySelectorAll(".template-info").length - 1;
+  const lbsInput = setHTML.querySelectorAll("input")[0];
+  const repsInput = setHTML.querySelectorAll("input")[0];
+
+  lbsInput.addEventListener("input", (event) => {
+    obj.workouts[workoutIndex][2][setIndex][0] = event.target.value;
+  });
+
+  repsInput.addEventListener("input", (event) => {
+    obj.workouts[workoutIndex][2][setIndex][1] = event.target.value;
+  });
 }

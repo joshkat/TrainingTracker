@@ -71,6 +71,7 @@ li {
   color: grey;
   padding: 0 5px 0 5px;
   height: 100%;
+  word-wrap: anywhere;
 }
 
 .template-lastWorkout {
@@ -183,8 +184,19 @@ li {
 
 .template-name {
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow: scroll;
   max-width: 250px;
+  height: 20px;
+}
+
+.buttonWrapper {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonWrapper button {
+  width: 160px;
 }
 
 /* margins on popup */
