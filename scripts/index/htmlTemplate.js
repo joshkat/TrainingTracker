@@ -1,19 +1,12 @@
-let div = document.getElementsByClassName("mainContent");
-let templateHolder = document.getElementsByClassName("holder")[0];
-let addTemplateBtn = document.getElementById("addTemplate");
+const div = document.getElementsByClassName("mainContent");
+const templateHolder = document.getElementsByClassName("holder")[0];
+const addTemplateBtn = document.getElementById("addTemplate");
 let templates = []; //by default will be null, put my own in later
 let HTMLtemplates = [];
 let userId;
 
-//appending dummy template
 function addTemplate(temp) {
-  let newTemplate, newDiv;
-  if (temp == undefined) {
-    newTemplate = createTemplatePopUp(templates); //used when creating brand new templates
-    return;
-  } else {
-    newDiv = htmlTemplate(temp); //reuse for appending templates after firebase login
-  }
+  const newDiv = htmlTemplate(temp); //reuse for appending templates after firebase login
   const optionsBtn = newDiv.getElementsByClassName("template-button")[0];
   const menu = newDiv
     .getElementsByClassName("template-topHead")[0]
@@ -72,7 +65,7 @@ function addTemplate(temp) {
 }
 
 addTemplateBtn.addEventListener("click", () => {
-  addTemplate();
+  createTemplatePopUp(templates);
 });
 
 const removeIndex = (div) => {

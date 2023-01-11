@@ -5,18 +5,7 @@ class Template {
     this.workouts = workouts; //arr.length > 1 needed to be added to db
     this.lastWorkout = lastWorkout; //empty str to init
   }
-
-  addWorkoutToTemplate(arr) {
-    //arr consists of [name, notes, setInfo]
-    this.workouts.push(arr);
-  }
 }
-
-const premadeWorkouts = [
-  //order of each arr is name, notes, setInfo(left empty)
-  ["Bench Press", "rn", "re"],
-  ["Incline Press", "re", "re"],
-];
 
 function htmlTemplate(objTemplate) {
   let workouts = [];
