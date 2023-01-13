@@ -159,7 +159,11 @@ function createTemplatePopUp(templateArr, obj) {
   });
 
   headerBtns[1].addEventListener("click", () => {
-    if (rtrn.workouts.length != 0 && obj == undefined) {
+    if (
+      rtrn.workouts.length != 0 &&
+      rtrn.workouts[2] == undefined &&
+      obj == undefined
+    ) {
       templateArr.push(rtrn);
       addTemplate(rtrn);
       document.querySelector(".holder").removeChild(wrapper);
@@ -194,7 +198,6 @@ function createTemplatePopUp(templateArr, obj) {
     const workoutName = prompt("What's the custom workout name?\n");
     if (workoutName == null || workoutName == "") /*when empty or null*/ return;
 
-    headerBtns[1].style = ""; //turns save btn back to green
     let workout = htmlWorkoutInPopup(workoutName);
     wrapper.querySelector(".template-workoutWrapper").appendChild(workout);
     //for db portion
@@ -210,6 +213,7 @@ function createTemplatePopUp(templateArr, obj) {
 
     //add set to specified workout
     workout.querySelector("#addSet").addEventListener("click", () => {
+      headerBtns[1].style = ""; //turns save btn back to green
       editWorkout(workout, rtrn, "addSet");
     });
 
