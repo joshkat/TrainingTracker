@@ -268,7 +268,7 @@ function editWorkout(workout, templateObj, str) {
 function addSetListeners(setHTML, obj, workout, workoutIndex) {
   const setIndex = workout.querySelectorAll(".template-info").length - 1;
   const lbsInput = setHTML.querySelectorAll("input")[0];
-  const repsInput = setHTML.querySelectorAll("input")[0];
+  const repsInput = setHTML.querySelectorAll("input")[1];
 
   lbsInput.addEventListener("input", (event) => {
     obj.workouts[workoutIndex][2][setIndex][0] = event.target.value;
