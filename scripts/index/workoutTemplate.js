@@ -7,6 +7,7 @@ class Template {
   }
 }
 
+//to generate div that gets appended to main page
 function htmlTemplate(objTemplate) {
   let workouts = [];
   //gets rid of notes and sets info from workout arr
@@ -33,13 +34,17 @@ function htmlTemplate(objTemplate) {
   return templateBorder;
 }
 
-function htmlWorkoutInPopup(obj) {
+/* all of these are for generating a new template */
+function htmlWorkoutInPopup(name, obj) {
   //for blank template for now, obj.length rtrns undef rem that
+  if (obj == undefined) {
+    obj = { name: `${name}` };
+  }
   const htmlWorkout = document.createElement("div");
   htmlWorkout.classList.add("template-workout");
   htmlWorkout.innerHTML = `
   <header class="template-workout-header">
-    <div class="template-name">${obj}</div>
+    <div class="template-name">${obj.name}</div>
     <button>Delete ❌</button>
   </header>
   <div class="template-info">
@@ -54,6 +59,12 @@ function htmlWorkoutInPopup(obj) {
     <button id="removeSet">remove last set</button>
   </div>
   `;
+
+  //append sets when obj isn't undefined
+  for (var i = 0; i < obj.workouts[2].length; i++) {
+    console.log(i);
+  }
+
   return htmlWorkout;
 }
 
@@ -78,13 +89,16 @@ function htmlWorkoutSetInPopup(currentSet) {
   return htmlSet;
 }
 
-function createTemplatePopUp(templateArr) {
+//use for new template and temlpate popup in general, when obj == undefined
+//it'll assume new template
+function createTemplatePopUp(templateArr, obj) {
   const wrapper = document.createElement("div");
   wrapper.classList.add("template-popup");
   wrapper.innerHTML = `
   <div class="template-head">
   <header class="template-header">
     <button class="template-popup-button">❌</button>
+    <div class="stopwatch"></div>
     <button class="template-popup-button template-save" style="background-color:red">
       Save
     </button>
@@ -111,19 +125,38 @@ function createTemplatePopUp(templateArr) {
 </div>
   `;
 
-  let rtrn = new Template("Untitled", "", [], "");
+  const headerBtns = wrapper.querySelectorAll(".template-popup-button");
+  const nameInput = wrapper.querySelector("input");
+  const templateNotes = wrapper.querySelector("textarea");
+
+  let rtrn,
+    changesMade = false;
+  if (obj == undefined) {
+    rtrn = new Template("Untitled", "", [], "");
+  } else {
+    //setup wrapper when obj is present
+    rtrn = obj;
+    headerBtns[1].style = ""; //removes red styling
+    headerBtns[1].innerText = "Finish";
+
+    nameInput.value = rtrn.name;
+    templateNotes.value = rtrn.notes;
+
+    for (var i = 0; i < rtrn.workouts.length; i++) {
+      htmlWorkoutInPopup("dummy", rtrn);
+    }
+  }
   //workouts are an arr, which consist of ["name", #index, "set arr"]
   //set arr will be used as follows
   // sets.length is # of sets; set[i,j] i is lbs j is reps rtrn.workouts[2][i,j]
 
-  const headerBtns = wrapper.querySelectorAll(".template-popup-button");
   headerBtns[0].addEventListener("click", () => {
     document.querySelector(".holder").removeChild(wrapper);
     //for close w/o save button
   });
 
   headerBtns[1].addEventListener("click", () => {
-    if (rtrn.workouts.length != 0) {
+    if (rtrn.workouts.length != 0 && obj == undefined) {
       templateArr.push(rtrn);
       addTemplate(rtrn);
       document.querySelector(".holder").removeChild(wrapper);
@@ -132,11 +165,12 @@ function createTemplatePopUp(templateArr) {
       userId = firebase.auth().currentUser.uid;
       // add the template to the user's templates in Firebase
       database.ref(`users/${userId}/templates`).set(templates);
+    } else {
+      console.log(rtrn);
+      return;
     }
-    console.log(rtrn);
   });
 
-  const nameInput = wrapper.querySelector("input");
   nameInput.addEventListener("input", (event) => {
     if (event.target.value != "") {
       rtrn.name = event.target.value;
@@ -146,7 +180,6 @@ function createTemplatePopUp(templateArr) {
     }
   });
 
-  const templateNotes = wrapper.querySelector("textarea");
   templateNotes.addEventListener("input", (event) => {
     rtrn.notes = event.target.value;
   });
@@ -156,10 +189,8 @@ function createTemplatePopUp(templateArr) {
   //meant for the adding custom workout, will be nearly identical to adding from list
   buttons[3].addEventListener("click", () => {
     const workoutName = prompt("What's the custom workout name?\n");
-    if (workoutName == null || workoutName == "") {
-      //when empty or null
-      return;
-    }
+    if (workoutName == null || workoutName == "") /*when empty or null*/ return;
+
     headerBtns[1].style = ""; //turns save btn back to green
     let workout = htmlWorkoutInPopup(workoutName);
     wrapper.querySelector(".template-workoutWrapper").appendChild(workout);
@@ -185,6 +216,7 @@ function createTemplatePopUp(templateArr) {
   });
 
   document.querySelector(".holder").appendChild(wrapper);
+  if (obj != undefined) console.log("opened");
 }
 
 //use this to remove whole workouts & add/remove sets from individual workouts
@@ -239,3 +271,6 @@ function addSetListeners(setHTML, obj, workout, workoutIndex) {
     obj.workouts[workoutIndex][2][setIndex][1] = event.target.value;
   });
 }
+
+// below will be for "starting up" a workout ater clicking on htmlTemplate div
+function startWorkout(templateObj) {}
