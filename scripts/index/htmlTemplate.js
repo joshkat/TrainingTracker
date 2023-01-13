@@ -37,8 +37,6 @@ function addTemplate(temp) {
   //Rename button
   templateAdjustBtns[1].addEventListener("click", () => {
     renameTemplate(newDiv);
-    // menu.classList.toggle("opened");
-    // menuOpen = false;
   });
 
   //deleteButton

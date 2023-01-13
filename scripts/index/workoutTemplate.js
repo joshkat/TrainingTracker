@@ -22,9 +22,9 @@ function htmlTemplate(objTemplate) {
     <h1 class="template-title"> ${objTemplate.name} </h1>
     <button class="template-button">•••</button>
   <ol class="template-menu">
-    <li>✍🏼 Edit</li>
-    <li>🖊 Rename</li>
-    <li>❌ Delete</li>
+    <li>✎ Edit</li>
+    <li>✎ Rename</li>
+    <li>✘ Delete</li>
   </ol>
   </div>
   <div class="template-workOutList"> ${workouts} </div>
@@ -35,17 +35,13 @@ function htmlTemplate(objTemplate) {
 }
 
 /* all of these are for generating a new template */
-function htmlWorkoutInPopup(name, obj) {
-  //for blank template for now, obj.length rtrns undef rem that
-  if (obj == undefined) {
-    obj = { name: `${name}` };
-  }
+function htmlWorkoutInPopup(name) {
   const htmlWorkout = document.createElement("div");
   htmlWorkout.classList.add("template-workout");
   htmlWorkout.innerHTML = `
   <header class="template-workout-header">
-    <div class="template-name">${obj.name}</div>
-    <button>Delete ❌</button>
+    <div class="template-name">${name}</div>
+    <button>Delete ⌫</button>
   </header>
   <div class="template-info">
     <div>Set</div>
@@ -59,11 +55,6 @@ function htmlWorkoutInPopup(name, obj) {
     <button id="removeSet">remove last set</button>
   </div>
   `;
-
-  //append sets when obj isn't undefined
-  for (var i = 0; i < obj.workouts[2].length; i++) {
-    console.log(i);
-  }
 
   return htmlWorkout;
 }
@@ -143,7 +134,19 @@ function createTemplatePopUp(templateArr, obj) {
     templateNotes.value = rtrn.notes;
 
     for (var i = 0; i < rtrn.workouts.length; i++) {
-      htmlWorkoutInPopup("dummy", rtrn);
+      const workout = htmlWorkoutInPopup(`${rtrn.workouts[i][0]}`);
+      const setArr = rtrn.workouts[i][2];
+
+      for (var j = 0; j < setArr.length; j++) {
+        const setHTML = htmlWorkoutSetInPopup(j + 1);
+        setHTML.querySelectorAll("input")[0].value = setArr[j][0];
+        setHTML.querySelectorAll("input")[1].value = setArr[j][1];
+        workout
+          .querySelector(".buttonWrapper")
+          .insertAdjacentElement("beforebegin", setHTML);
+      }
+
+      wrapper.appendChild(workout);
     }
   }
   //workouts are an arr, which consist of ["name", #index, "set arr"]
@@ -271,6 +274,3 @@ function addSetListeners(setHTML, obj, workout, workoutIndex) {
     obj.workouts[workoutIndex][2][setIndex][1] = event.target.value;
   });
 }
-
-// below will be for "starting up" a workout ater clicking on htmlTemplate div
-function startWorkout(templateObj) {}
