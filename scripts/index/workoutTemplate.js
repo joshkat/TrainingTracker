@@ -135,6 +135,27 @@ function createTemplatePopUp(templateArr, obj) {
 
     for (var i = 0; i < rtrn.workouts.length; i++) {
       const workout = htmlWorkoutInPopup(`${rtrn.workouts[i][0]}`);
+
+      //remove specified workout
+      workout.querySelector("button").addEventListener("click", () => {
+        editWorkout(workout, rtrn, "removeWorkout", wrapper);
+        if (rtrn.workouts.length == 0) {
+          headerBtns[1].style = "background-color:red";
+        }
+      });
+
+      //add set to specified workout
+      workout.querySelector("#addSet").addEventListener("click", () => {
+        headerBtns[1].style = ""; //turns save btn back to green
+        editWorkout(workout, rtrn, "addSet");
+        console.log("added");
+      });
+
+      workout.querySelector("#removeSet").addEventListener("click", () => {
+        editWorkout(workout, rtrn, "removeSet");
+        console.log("removed");
+      });
+
       const setArr = rtrn.workouts[i][2];
 
       for (var j = 0; j < setArr.length; j++) {
@@ -166,16 +187,26 @@ function createTemplatePopUp(templateArr, obj) {
     ) {
       templateArr.push(rtrn);
       addTemplate(rtrn);
-      document.querySelector(".holder").removeChild(wrapper);
-
-      // get the current user's UID
-      userId = firebase.auth().currentUser.uid;
-      // add the template to the user's templates in Firebase
-      database.ref(`users/${userId}/templates`).set(templates);
     } else {
-      console.log(rtrn);
-      return;
+      let templateIndex = templateArr.findIndex(
+        (e) =>
+          e.name == rtrn.name &&
+          e.notes == rtrn.notes &&
+          e.workouts == rtrn.workouts &&
+          e.lastWorkout == rtrn.lastWorkout
+      );
+      templateArr[templateIndex] = rtrn;
+      //adjust template that we just finished
+      let UITemplate =
+        document.querySelectorAll(".template-border")[templateIndex];
+
+      UITemplate.querySelector(".template-title").innerText = rtrn.name;
     }
+    // get the current user's UID
+    userId = firebase.auth().currentUser.uid;
+    // add the template to the user's templates in Firebase
+    database.ref(`users/${userId}/templates`).set(templates);
+    document.querySelector(".holder").removeChild(wrapper);
   });
 
   nameInput.addEventListener("input", (event) => {
@@ -205,7 +236,7 @@ function createTemplatePopUp(templateArr, obj) {
 
     //remove specified workout
     workout.querySelector("button").addEventListener("click", () => {
-      editWorkout(workout, rtrn, "removeWorkout");
+      editWorkout(workout, rtrn, "removeWorkout", wrapper);
       if (rtrn.workouts.length == 0) {
         headerBtns[1].style = "background-color:red";
       }
@@ -215,10 +246,12 @@ function createTemplatePopUp(templateArr, obj) {
     workout.querySelector("#addSet").addEventListener("click", () => {
       headerBtns[1].style = ""; //turns save btn back to green
       editWorkout(workout, rtrn, "addSet");
+      console.log("added");
     });
 
     workout.querySelector("#removeSet").addEventListener("click", () => {
       editWorkout(workout, rtrn, "removeSet");
+      console.log("removed");
     });
   });
 
@@ -227,7 +260,7 @@ function createTemplatePopUp(templateArr, obj) {
 }
 
 //use this to remove whole workouts & add/remove sets from individual workouts
-function editWorkout(workout, templateObj, str) {
+function editWorkout(workout, templateObj, str, wrapper) {
   const htmlWorkouts = document.querySelectorAll(".template-workout");
   const htmlName = workout.querySelector(".template-name").innerText;
 
@@ -237,7 +270,7 @@ function editWorkout(workout, templateObj, str) {
     if (temp == htmlName && str == "removeWorkout") {
       //removes from document & obj
       templateObj.workouts.splice(i, 1);
-      document.querySelector(".template-workoutWrapper").removeChild(workout);
+      wrapper.querySelector(".template-workoutWrapper").removeChild(workout);
       return;
     }
     if (temp == htmlName && str == "addSet") {
