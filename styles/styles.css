@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  /* background-color: #181a1b; color for dark mode */
+  -webkit-text-size-adjust: none; /* safari resizing */
 }
 
 #root {
