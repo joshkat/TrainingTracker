@@ -17,7 +17,7 @@ Please keep in mind that this is a mobile-first application, which means that th
 
 To use the webapp, follow these steps:
 
-1. Visit the [link](training.katayev.io) and register for an account using your Google credentials
+1. Visit the [link](https://training.katayev.io) and register for an account using your Google credentials
 2. Create a new workout template and select movements from the provided database (or add custom movements)
 4. Use the template to perform your workout and log your progress
 5. Track your progress over time using the built-in tracking and analysis features
