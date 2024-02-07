@@ -1,5 +1,7 @@
 # Training Tracker
 
+# **THIS IS VERSION 1 AND IS NOW ARCHIVED, FOR THE UPDATED VERSION GO [HERE](https://github.com/joshkat/Training-Tracker)**
+
 This webapp helps users track their workouts and create custom workout templates. 
 It also allows users to store their previous workouts and body measurements, as well as create custom movements. 
 In addition, the app provides access to a database of over 200+ movements that can be used within user-defined templates.
